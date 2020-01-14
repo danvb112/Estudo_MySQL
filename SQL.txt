@@ -1,0 +1,536 @@
+Curso de SQL
+
+- Bancos de dados são ferramentas que permitem o armazenamento e manipulação de dados organizados em 
+forma de tabelas
+
+- As tabelas são uma forma de organização de dados formada por linhas (Registros ou tuplas) e colunas 
+(Campos que formam um registro)
+
+- Visões são consultas SQL a dados das tabelas do banco sem armazena-los
+
+- Índicies são estruturas que gerenciam a ordenação de valores dos campos informados para melhorar a 
+performace de processamento destes campos.
+
+- SGBD é um sistema gerenciador de banco de dados. Não é um banco de dados mas sim um complemento, um 
+grupo de programas para a interação com os dados.
+
+- SQL (Structured Query Language) linguagem estruturada de consulta é formada pelo conjunto das linguagens:
+DDL (Data Definition Language): Linguagem de definição de dados
+DML (Data Manipulation Language): Linguagem de manipulação de dados
+DQL (Data Query Langueage): Linguagem de consulta de dados
+DCL (Data Control Language): Linguagem de controle de dados
+DTL (Data Trasaction Language): Linguagem de Transição de dados
+
+- Linguagem de definição de dados possui os seguintes comandos:
+
+* CREATE: Cria uma estrutura
+* ALTER: Altera uma estrutura
+* DROP: Exclui uma estrutura
+
+- Linguagem de manipulação de dados possui os seguintes comandos: 
+
+* INSERT: Insere dados
+* UPDATE: Atualiza os dados
+* DELETE: Exclui os dados
+
+- Linguagem de consulta de dados possui os seguintes comandos::
+
+* SELECT: Retorna dados
+* Ordenação de dados
+* Agrupamento de dados
+* Funções aritméticas
+* Filtros de seleção
+
+- Linguagem de controle de dados possui os seguintes comandos:
+
+* GRANT: Habilita acesso de dados e operações
+* REVOKE: Revoga acesso a dados e operações
+
+- Linguagem de Transação de dados possi os seguintes comandos:
+
+* START TRANSACTION: inicia transação
+* COMMIT: Concretiza a trasação
+* ROLLBACK: Anula a Transação
+
+- Os 5 principais bancos de dados do mercado são os MySQL, PostgreSQL, Firebird, Oracle e o SQL Server
+
+- Os relacionamentos são as ligações entre tabelas
+
+- Chave primária (Primary key, PK) são colunas com valores únicos
+
+- Chave composta é a composição de duas ou mais colunas para gerar uma combinação única
+
+- Chave estrangeira (Foreingkkey, FK) Coluna que armazena a chave primária de outra tabela
+
+- Relacionamento 1 para 1 (1:1) significa que para cada registro da primeira tabela existe no máximo um 
+correspondente na segunda tabela, e vice-versa.
+
+- Relacionamento 1 para muitos (1:*) significa que para cada registro da primeira tabela pode existir
+um ou mais correspondentes na segunda tabela, e para cada registro na segunda tabela existe apenas um 
+registro correspondente na primeira tabela.
+
+- Relacionamento muitos para muitos (*:*) significa que para cada registro da primeira tabela pode exis-
+tir um ou mais correspondentes na segunda tabela, e virce-versa.
+
+- Criar tabelas que "fazem tudo" não é uma boa opção pois elas geram anomalias como as:
+
+* Anomalias de inserção que impedem a inclusão de registros devido à falta de dados
+* Anomalias de exclusão que impedem a exclusão de registros devido ao relacionamento com outra tabela
+* Anomalias de alteração que impedem a alteração de registros devido ao relacionamento com outra tabela
+
+-  Então para avitar anomalias, facilitar a manutenção, maximizar a performance e mater a integridade 
+dos dados devemos normalizar os dados.
+
+- A normalização dos dados foi criada em 1970 e possui 5 formas Normais (FNs), na prática a normaliza-
+ção dos dados é feita por intuição e resulta em um número maior de tabela no banco. Mais tabelas podem
+aumentar a manutenção e diminuir a performance por isso deve ser utilizado com bom senso.
+
+- A primeira forma normal (1FN) diz que:
+
+* Cada linha de tabela deve representar um registro
+* Cada célula de tabela deve conter um único valor
+
+- A segunda forma normal (2FN) diz que:
+
+* Obrigatoriamente estar na 1FN
+* Atributos não chave da tabela devem depender de alguma das chaves da tabela
+
+- A terceira forma normal (3FN) diz que:
+
+* Obrigatóriamente estar na 2FN
+* Atributos não chave da tabela devem depender exclusivamente da chave primária da tabela
+
+- A quarta e quinta forma normal (4FN e 5FN) diz que:
+
+* Valores que ainda estejam redundantes em uma mesma coluna devem ser separados em novas tabelas.
+
+- O SQL é uma linguagem declarativa, detalha a forma do resultado e foi criado no início dos anos 70, em
+laboratórios da IBM. Com o tempo novas versões (dialetos) de outras empresas começaram a surgir, deri-
+vando e evoluindo o SQL. Com isso foi nécessario que houvesse uma padronização e isso foi feito em 1986
+pela ANSI (American National Standards Institute) e pela ISO (International organization for Standardi-
+zation) em 1987. Bancos de dados criam e evoluem suas própias derivações do SQL.
+
+- O SQL é uma linguagem que exige que o tipo de dado seja declarado e alguns dos tipos de dados existen-
+tes são:
+
+* BOOLEAN (Representa 0 ou 1 (FALSE ou TRUE))
+* E vários tipos para números inteiros e FLOAT que pode ser consutado na tabela
+
+- Também existe o tipo de dado string e pode ser declarado como:
+
+* CHAR é um tipo em que se delcara o tamanho da string e o servidor reserva (Auto completa) o espaço de-
+clarado com espaços em branco se for necessário, ou seja, sempre ocupará o tamanho definido.
+* No VARCHAR o auto completar não ocorre pois a coluna sabe que armazenará strings de tamanhos variados,
+ou seja, é mais otmizado.
+
+- Também é possivel declarar data e hora atravez de:
+
+* DATE que armazena informação de data composta por dia, mês e ano
+* TIME armazena informação de tempo composto por segundos, minutos e horas
+* DATETIME junta as duas informações, data e hora 
+
+- outro tipo de dado existente é o ENUM que é uma lista customizada de valores que você pode definir 
+quais valores farão parte dessa lista
+
+- Existem tabém outros tipos de dados como os:
+* BLOB que permite o armazenamento de informações binárias,
+arquivos e imagens.
+* TEXT que permite o armazenamento de grandes informações de strings
+* Redes que permite armazenar endereços de IP, MAC-ADDRESS e outros
+* Monetários que permite o armazenamento de valores monetários com formatação
+* Geométricos que permite o armazenamento de informações de formas geometricas
+
+- Alguns dos atributos do SQL são:
+
+* NULL/ NOT NULL que permite ou não valores nulos
+* UNSIGNED/SIGNED que permite ou não números negativos
+* Auto-increment que auto incrementa sequências, contadores
+
+- Dentro das boas práticas de armazenamento temos que nos preocupar com o espaço em disco no caso, quan-
+to menor o tipo de dado, menos espaço ele ocupará e mais rápido é o processamento. Então é sempre sensa-
+to escolher o menor tipo de dados possível para armazenar suas informações se perguntando sempre "Qual
+o menor e maior valor que o campo poderá receber?"
+
+- Dentro dos maus usos dos tipos de dados temos:
+
+* Armazenar dados númericos em colunas string
+* Armazenar dados numéricos em campos maiores que o necessário
+* Criar campos de string maiores do que o necessário
+
+- Para criar, alterar e excluir um banco de dados devemos fazer da seguinte forma:
+
+Criar: " CREATE DATABES 'Nome' "
+* Nomes sem espaços e sem caracteres especiais, os conjuntos mais utilizados são Latin1 e UTF-8
+
+Alterar: "ALTER DATABESE 'Nome Propriedade' "
+
+Excluir: " DROP DATABESE 'nome' "
+* Exclusão é definitiva e irreversível
+
+- Para Criar uma tabela no banco de dados devemos fazer da seguinte forma:
+
+Criar: " CREATE TABLE Nome(Campos)
+* Sintaxe de descrição de campo: Nome TipoDeDado Atributos
+os atributos podem ser: NULL, ZEROFILLM UNSIGNED, AUTO-INCREMENT, CHAVE
+
+Alterar: ALTER TABLE Nome Propriedade
+
+Excluir: DROP TABLE Nome
+* Exclusão é definitiva e irreversível
+
+- Para criar um índice devemos fazer:
+
+Criar:  CREATE INDEX Nome ON TabelaEColuna
+
+Alterar: ALTER INDEX Nome Propriedade
+
+Excluir: DROP INDEX Nome
+
+- Para criar sequências devemos fazer da seguinte forma:
+
+Criar: CREATE SEQUENCE Nome
+
+Alterar: ALTER SEQUENCE Nome Propriedade
+
+Excluir: DROP SEQUENCE Nome
+
+
+- Para a manipulação dos dados fazemos uso dos comandos pertencentes a liguagem de manipulação e de 
+consulta de dados, sendo eles: INSERT, UPDATE, DELETE e o SELECT
+
+exemplos de utilização dos comandos:
+
+* INSERT INTO tabela VALUES (valores)
+  Ex:. INSERT INTO PESSOAS VALUES ('André', '111.111.111-11')
+  Ex:. INSERT INTO PESSOAS (NOME, CPF) VALUES ('André', '111.111.111-11')
+
+- No segundo exemplo podemos ver que os campos onde os dados serão inseridos foram especificados, caso
+os campos não fossem especificados, os valores seriam adicionados conforme a ordem de criação dos cam-
+pos na tabela.
+
+* SELECT Campos FROM Tabela
+  Ex:. SELECT * FROM PESSOAS
+  Ex:. SELECT NOME FROM PESSOAS
+
+- O "*" indica que todos os campos serão selecionados
+
+* UPDATE Tabela SET Campo = Valor
+  Ex:. UPDATE PESSOAS SET NOME = "Andre Milani"
+
+* DELETE FROM Tabela
+  Ex:. DELETE FROM PESSOAS
+
+- Até agora esses comandos foram utilizados sem filtros nenhum, ou seja, estavam sendo selecionados
+todos os registros dos campos especificados, se dessa forma utilizassemos o UPDATE ou o DELETE esta-
+ríamos atualizando ou deletando todos os registros dos campos especificados. Para nossa seleção ficar
+ainda mais especifica existe os filtros de seleção.
+
+- Os filtros de seleção podem ser combinados com operadores relacionais e operadores lógicos para uma 
+especificação mais detalhada.
+
+* Registros selecionados (WHERE)
+
+* Operadores relacionais
+  - Igual (=), Diferente (!=)
+  - Maior (>), Maior ou igual (>=)
+  - Menor (<), Menor ou igual (<=)
+  - Nulo (IS NULL), Não nulo (IS NOT NULL)
+  - Entre intervalos (BETWEEN)
+  - Valor Parcial (LIKE)
+
+* Operadores lógicos
+  - AND
+  - OR
+  - NOT
+
+- Dessa forma a consulta aos dados fica muito mais especifica, exemplos do uso do SELECT, UPTADE e o 
+DELETE com filtro de seleção:
+
+* SELECT Campos FROM Tabela  WHERE Condição
+  Ex:. SELECT * FROM PESSOAS WHERE CPF = '111.111.111-11'
+  Ex:. SELECT NOME FROM PESSOAS WHERE IDADE > 20
+
+* UPDATE Tabela SET Campo = Valor WHERE Condição
+  Ex:. UPDATE PESSOAS SET NOME = "fabio" WHERE CPF = "222.222.222-22"
+  Ex:. UPDATE PESSOAS SET IDADE = 25 WHERE NOME = "Mario"
+
+* DELETE FROM Tabela WHERE Condição
+  Ex:. DELETE FROM PESSOAS WHERE CPF = "222.222.222-22"
+  Ex:. DELETE FROM PESSOAS WHERE NOME = "Mario"
+
+- Também é possível dar apelidos tanto a tabelas quanto a campos, são atributos especiais que podem 
+ser utilizados com a instrução SELECT.
+
+- O apelido de tabelas pode facilitar a escrita quando se tem muitas referências a tabela em questão,
+a forma de se dar um apelido a uma tabela é:
+
+* SELECT Campos FROM Tabela Apelido...
+  Ex:. SELECT TABELA_UM.NOME FROM PESSOAS TABELA_UM
+
+- O apelido de campos pode ser utilizado quando se tem mais de um campo com nomes iguais, facilitando
+a escrita do código, exemplo:
+
+* SELECT Campo AS Apelido FROM ...
+  Ex:. SELECT NOME AS PRIMEIRO_NOME FROM PESSOAS
+
+- Outro atributo especial do comando SELECT é o UNION e o UNION [ALL], que permite juntar duas ou mais 
+expressões SELECT em uma única tabela resultado do banco de dados, bastando usar o comando UNION entre
+as expressões SELECT que deseja concatenar. A diferença entre o UNION e o UNION[ALL] é que o UNION não
+retorna registros duplicados caso ambas as expressões SQL tenham registros incomum enquanto que, o 
+UNION[ALL] trará em seu resultado exatamente o número de vezes que cada registros aparece em cada uma 
+das expressões SELECT.
+
+* SELECT...UNION SELECT...
+  Ex:. SELECT * FROM PESSOAS UNION SELECT * FROM CARGOS
+
+
+- O SQL usa por padrão uma ferramenta de segurança que impede que a tabela inteira seja atualizada de 
+vez chamada "SQL_SAFE_UPDATES", para desabilitar essa ferramenta basta setar ela como 0 e para habili-
+tar novamente basta seta-la como 1, Ex:; 
+
+* SET SQL_SAFE_UPDATES = 0;
+
+- A instrução ROUND serve para ajustarmos as casas decimais em caso de atualização de registro. Usamos
+ROUND e entre parênteses colocamos primeiro a expressão desejada e após uma vírgula o número de casas
+que desejamos ajustar.
+
+- Os relacionamentos no SQL acontecem quando existem informações que podem ser relacionadas, geralmen-
+te em diferentes tabelas que possam possuir campos em comum. Para estabelecer os relacionamentos usa-
+se a instrução JOIN e suas variações e em seguida as condições que irão formar o relacionamento. As
+condições das tabelas se dá informando qual campo da tabela 1 é igual ou se relaciona com o campo da 
+tabela 2, geralmente são campos chaves sendo uma primária e outra estrangeira mas, isso não é regra. 
+
+* SELECT... FROM T1 JOIN T2 ON T1.FK = T2.PK
+* SELECT... FROM T1 JOIN T2 USING Chave
+
+- Usando o parâmetro JOIN com a sintax USING alteramos o resultado pois a coluna que está sendo utili-
+zada para montar o relacionamento irá aparecer somente uma vez mesmo existindo nas duas tabelas, dife-
+rente do resultado da primeira sintaxe em que a coluna apareceria duas vezes. 
+
+- O Inner join é o join padrão e é utilizado sempre que nenhum outro join for especificado, ele gera
+o produto cartesiano entre as tabelas, combinando todas as linhas da primeira tabela com todas as li-
+nhas da segunda tabela desde que satisfaçam as condições das chaves. 
+
+Ex:. Inner Join
+
+* SELECT * FROM PESSOAS JOIN VEICULOS ON PESSOAS.CPF = VEICULOS.CPF
+
+-  O Equi join é similar ao inner join só que é utilizado quando existem chaves de mesmo nome entre 
+as tabelas
+
+Ex:. Equi join
+
+* SELECT * FROM PESSOAS JOIN VEICULOS UNSING (CPF)
+
+- é possivel também criar relacionamentos sem campos em comum
+
+* SELECT P.NOME, P.SALARIO, S.FAIXA FROM PESSOAS P INNER JOIN SALARIOS S ON P.SALARIOS BETWEEN 
+S.INICIO AND S.FIM
+
+- O outer join ou left join trás em sua composição linhas (da tabela a esquerda do relacionamento) que
+não satisfazem a condição de união 
+
+Ex:. Left join
+
+* SELECT * FROM PESSOAS LEFT JOIN VEICULOS ON PESSOAS.CPF = VEICULOS.CPF
+
+- O Right join é similar ao left join só que as linhas que não satisfazem a condição de união serão as
+da tabela que estará a direita do relacionamento
+
+Ex:. Right join
+
+* SELECT * FROM PESSOAS RIGHT JOIN VEICULOS ON PESSOAS.CPF = VEICULOS.CPF
+
+- O Full outer join combina o left join e o right join então, tanto as linhas da tabela a esquerda e a
+direita do relacionamento que não satisfazem as condições de união, serão exibidas.
+
+Ex:. full outer join
+
+* SELECT * FROM PESSOAS FULL JOIN VEICULOS ON PESSOAS.CPF = VEICULOS.CPF
+
+- também podem existir relacionamentos da tabela com ela própria, é o chamado self join
+
+Ex:. Self Join
+
+* SELECT A.NOME, B.NOME AS INDICADO_POR FROM PESSOAS A JOIN PESSOAS B ON A.INDICADO = B.CPF 
+
+- Visões são tabelas ou relações virtuais que não armazenam dados mas retornam o resultado de uma ex-
+pressão SQL de consulta especifica. Por não armazenar dados, as visões não fazem parte do modelo lógi-
+co do banco, podendo ser excluidas sem perder nenhuma informação do banco.
+
+- Uma visão pode ser vista como uma expressão SELECT só que pré-programada para ser utlizada a qual-
+quer momento, refletindo sempre a imagem atual do banco de dados em tempo real. uma das vantagens das
+visões é justamente a economia do espaço em disco para representar as mesmas informações, além de cen-
+tralização de código e facilidade de manuntenção de expressões SQL.
+
+- Os seguintes códigos são usados para se criar visões:
+
+* CREATE VIEW Nome AS ExpressãoSQL
+* ALTER VIEW Nome Propriedade
+* DROP VIEW Nome
+   - Apenas a estrutura da visão é removido, os dados permanecem intactos em suas respectivas tabelas
+
+- O full outer join não tem comando especifico para se utilizar no MySQL, para utiliza-lo deve-se fa-
+zer um left join e um right join e unir os dois com a instrução UNION.
+
+- No self join, ou seja, relacionamento da tabela com ela própria, é necessário fazer o uso de apelido
+para a tabela, caso contrário o MySQL não executa o código.
+
+- Também existe outras formas de se utilizar o comando SELECT como usar funções aritmetricas e outras
+ações possivéis, também conhecidas como funções de agregação sendo elas:
+
+* COUNT: Contagem de registros de uma consulta
+    Ex:. SELECT COUNT(*) FROM FUNCIONARIOS 
+
+* SUM: Soma de valores
+    Ex:. SELECT SUM(SALARIO) FROM FUNCIONARIOS 
+
+* AVG: média de valores
+    Ex:. SELECT AVG(SALARIO) FROM FUNCIONARIOS
+
+* MAX: Valor máximo retornado pela consulta
+    Ex:. SELECT MAX(SALARIO) FROM FUNCIONARIOS 
+
+* MIN: Valor mínimo retornado pela consulta
+    Ex:. SELECT MIN(SALARIO) FROM FUNCIONARIOS
+
+- é possível também juntar os comandos das funções de agregação com o filtro de seleção WHERE
+
+* SELECT Comando FROM Tabela WHERE Condição
+    Ex:. SELECT SUM(SALARIO) FROM FUNCIONARIOS WHERE DEPARTAMENTO = 'Recursos Humanos'
+
+- Se existirem milhões de registros no banco de dados, exibir todos ficaria de difícil leitura além de
+esteticamente feio para uma página web por exemplo, para esse caso é interessante usar paginação que 
+nada mais é do que um recurso que se tem para exibir as informações pouco a pouco como por exemplo de 
+20 em 20 ou 30 em 30 registros. Para se utilizar paginação é necessário usar alguns parâmetros do SQL
+como:
+
+* DISTINCT: Seleciona os valores únicos, sem repetição
+    Ex:. SELECT DISTINCT(DEPARTAMENTO) FROM FUNCIONARIOS
+
+* ORDER BY: Ordena o resultado (ASC, DESC) baseado nas colunas informadas
+    Ex:. SELECT * FROM FUNCIONARIOS ORDER BY SALARIO
+
+* LIMIT: Limita o número de resultados retornados
+    Ex:. SELECT * FROM FUNCIONARIOS LIMIT 2
+
+* OFFSET: Indica quantos registros devem ser avançados (PULADOS)
+    Ex:. SELECT * FROM FUNCIONARIOS OFFSET 2
+
+-  O SQL oferece também funções de agrupamento de resultado, para que se possa categorizar os resulta-
+dos em nossas consultas e ainda filtrar essas consultas se necessário tendo como comandos:
+
+* GROUP BY: Agrupamento de registros por categoria
+    Ex: SELECT DEPARTAMENTO, AVG(SALARIO) FROM FUNCIONARIOS GROUP BY DEPARTAMENTO
+
+* HAVING: Seleção de agrupamento, filtro das categorias
+    Ex:.  
+- SELECT DEPARTAMENTO, AVG(SALARIO) FROM FUNCIONARIOS GROUP BY DEPARTAMENTO HAVING AVG(SALARIO) > 1500
+
+- A diferença do HAVING pro WHERE é que o HAVING serve para filtrar registros categorizados, agrupa-
+dos enquanto que o WHERE faz o filtro de registros direto.
+
+- As Subqueries ou subconsultas podem ser entendidas como consultas alinhadas, elas permitem fazer 
+filtros de consultas baseado em outra consulta, para isso podemos informar se desejamos que o retorno
+da primeira consulta esteja presente no retorno da segunda utilizando o parâmetro IN ou que não este-
+ja, utilizando o parâmetro NOT IN 
+
+Ex:. SELECT NOME FROM FUNCIONARIOS WHERE DEPARTAMENTO IN ('Marketing', 'TI')
+   - O resultado dessa expressão ainda não apresenta uma Subquerie mas, apresentas as ferramentas para 
+se ter uma, se no lugar de 'Marketing' e 'TI' nós tivessimos uma outra expresão SELECT, aí sim seria
+uma subquerie
+
+Ex:. SELECT NOME FROM FUNCIONARIOS WHERE DEPARTAMENTO IN (SELECT DEPARTAMENTO FROM FUNCIONARIOS GROUP
+BY DEPARTAMENTO HAVING AVG(SALARIO) > 1500)
+
+- O controle de acesso de dados é uma forma de garantir que somente pessoas autorizadas possam reali-
+zar ações com os dados sendo essas ações:
+* Gerenciar estruturas
+* Gerenciar dados
+* Ler dados
+- E os níveis de acesso temos: Banco de dados, tabelas, colunas e registros. Logo quando um usuário 
+tenta acessar algum dado, as perguntas relacionadas aos níveis de segurança são: Possui acesso ao ser-
+vidor?, Possui acesso ao banco?, Possui acesso a tabela?, Possui acesso a coluna?, Possui acesso ao
+registro?, Possui acesso a operação?.
+
+- Para a linguagem de controle de dados temos os seguintes comandos:
+
+* CREATE USER Nome: Cria um usuário
+* DROP USER Nome: Exclui um usuário
+* GRANT: Habilita acessos
+* REVOKE: revoga acessos
+
+- Para habilitar um acesso usa-se:
+
+* GRANT Ação ON Estrutura TO Usuário
+
+- Para revogar um acesso usa-se:
+
+* REVOKE Ação ON Estrutura FROM Usuário  
+
+- As ações podem ser SELECT, INSERT, UPDATE, DELETE, ou todas elas (ALL) e as estruturas podem ser: 
+TABLE, VIEW, SEQUENCE
+
+- Ao se criar um usuário pode-se especificar de onde ele irá acessar o banco, podendo ser definido
+após o sinal de '@' e tendo três tipos sendo eles: Um ip especifico Ex:'200.200.190.190'; Um acesso
+a partir de qualquer ip sendo especificado pelo sinal '%'; Ou um acesso a partid do proprio ip local
+sendo especificado como 'localhost'. Após especifica o nome e o local de acesso, é preciso dizer qual
+a senha do usúario sendo especificada logo após o 'IDENTIFIED BY'
+
+Ex: CREATE USER 'Daniel'@'localhost' IDENTIFIED BY 'bonasser123456';
+
+- Para conceder acesso ao usuário, deve-se especificar não só o banco de dados que ele terá acesso mas
+também qual parte especifica do banco ele te´ra acesso, podendo ser uma tabela especifica ou tudo (*),
+e quando é especificado qual usuário irá usar o banco, também deve-se especificar qual o tipo de ip
+ele estará usando.
+
+Ex: GRANT ALL ON curso_sql.funcionarios TO 'Daniel'@'localhost';
+
+- Ao se conceder acesso a todo o banco de dados (*), o MySQL não permite que apenas uma tabela seja
+retirada do acesso, se você concede acesso a tudo, só poderá revogar acesso a tudo.
+
+- Para realização de transações existem um conjunto de operações chamadas ACID que é uma sigla para:
+
+* Atomicidade
+* Consistencia
+* Isolamento
+* Durabilidade
+
+- Uma trasação ACID garante que não possa acontecer duas transações ao mesmo tempo mas, sim que uma 
+seja feita de cada vez. Como exemplo podemos citar uma transferência bancária de um cliente A para B.
+Primeiro deve-se verificar se há saldo suficiente na conta do cliente A, depois retirar da conta do 
+cliente A o valor da transferência e por fim depositar na conta do cliente B o valor da transferência.
+Caso duas transferências do tipo tenham que ser realizadas, a primeira deve ser concretizada para que 
+os dados estejam atualizados possibilitando que a segunda transação seja realizada, caso contrário,
+poderia haver uma confusão na hora de atualizar os dados e acontecer erros.
+
+- Dentro da linguagem de transação de dados temos três principais comandos sendo eles:
+
+* START TRANSACTION: Inicia a transação
+* COMMIT: Concretiza a transação
+* ROLLBACK: Anula a transação
+
+- Para realizar transações no SQL é necesário criar uma tabela com suporte a transações, para isso, é
+possivel ver quais tipos de "engines" suportam transações com o comando "SHOW ENGINES". No final da 
+criação da tabela é necessário especificar a engine com suporte a transação, logo após o parêntese que 
+termina o comando CREATE TABLE:
+
+Ex:. CREATE TABLE ... 
+(
+	...
+	...	
+	...
+) ENGINE = InnoDB:
+
+
+
+
+
+
+
+
+
+
+
+
+

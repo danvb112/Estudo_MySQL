@@ -159,8 +159,9 @@ CREATE TRIGGER gatihlo_limpa_pedidos BEFORE INSERT ON estoque FOR EACH ROW CALL 
 INSERT INTO estoque (descricao, quantidade) VALUES ('Fogão', 5);
 UPDATE pedidos SET pago = "Sim" WHERE id = 8;
 INSERT INTO estoque (descricao, quantidade) VALUES ('Celular', 10);
-SELECT * from estoque;
+SELECT *, quantidade from estoque;
 
+DELETE from estoque;
 
 
 

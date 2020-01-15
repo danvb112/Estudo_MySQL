@@ -105,16 +105,61 @@ DROP USER 'Daniel'@'%';
 SELECT USER FROM mysql.user;
 SHOW GRANTS FOR 'Daniel'@'%';
 
+SHOW ENGINES;
 
+CREATE TABLE contas_bancarias
+(
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    titular VARCHAR(45) NOT NULL,
+    saldo DOUBLE NOT NULL,
+    PRIMARY KEY (id)
+) ENGINE = InnoDB;
 
+INSERT INTO contas_bancarias (titular, saldo) VALUES ('André', 1000);
+INSERT INTO contas_bancarias (titular, saldo) VALUES ('Carlos', 2000);
 
+SELECT * FROM contas_bancarias;
 
+start transaction;
+UPDATE contas_bancarias SET saldo = saldo - 100 WHERE id = 1;
+UPDATE contas_bancarias SET saldo = saldo + 100 WHERE id = 2;
+rollback;
 
+start transaction ;
+UPDATE contas_bancarias SET saldo = saldo - 100 WHERE id = 1;
+UPDATE contas_bancarias SET saldo = saldo + 100 WHERE id = 2;
+commit;
 
+CREATE TABLE pedidos 
+(
+	id int unsigned not null auto_increment,
+    descrição varchar(100) not null,
+    valor double not null default '0',
+    pago varchar(3) not null default "Não",
+    PRIMARY KEY (id)
+);
 
+INSERT INTO pedidos (descrição, valor) VALUES ('TV', 3000);
+INSERT INTO pedidos (descrição, valor) VALUES ('Geladeira', 1400);
+INSERT INTO pedidos (descrição, valor) VALUES ('DVD Player', 300);
 
+SELECT * FROM pedidos;
+CALL limpa_pedidos();
 
+CREATE TABLE estoque 
+(
+	id int unsigned not null auto_increment,
+    descricao varchar(50) not null,
+    quantidade int not null,
+    PRIMARY KEY (id)
+);
 
+CREATE TRIGGER gatihlo_limpa_pedidos BEFORE INSERT ON estoque FOR EACH ROW CALL limpa_pedidos();
+
+INSERT INTO estoque (descricao, quantidade) VALUES ('Fogão', 5);
+UPDATE pedidos SET pago = "Sim" WHERE id = 8;
+INSERT INTO estoque (descricao, quantidade) VALUES ('Celular', 10);
+SELECT * from estoque;
 
 
 

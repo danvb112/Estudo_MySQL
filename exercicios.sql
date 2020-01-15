@@ -115,13 +115,31 @@ SELECT nome FROM cursos WHERE nome LIKE "Java_%";
 SELECT nome FROM cursos WHERE tipo IN (SELECT tipo FROM cursos WHERE tipo = 'Programação');
 /*SELECT nome FROM cursos WHERE EXISTS (SELECT tipo FROM cursos WHERE tipo = 'programação'); */
 
+/* Exercicios 8 */
 
+SHOW ENGINES;
 
+CREATE TABLE conta_bancaria 
+(
+	codigo INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    titular VARCHAR(45) NOT NULL,
+    saldo DOUBLE NOT NULL,
+    PRIMARY KEY (codigo)
+) engine = InnoDB;
 
+INSERT INTO conta_bancaria (titular, saldo) VALUES ('André', 213);
+INSERT INTO conta_bancaria (titular, saldo) VALUES ('Diogo', 489);
+INSERT INTO conta_bancaria (titular, saldo) VALUES ('Rafael', 568);
+INSERT INTO conta_bancaria (titular, saldo) VALUES ('Carlos', 712);
+INSERT INTO conta_bancaria (titular, saldo) VALUES ('Peter', -38);
 
+SET SQL_SAFE_UPDATES = 0;
 
+SELECT * FROM conta_bancaria;
 
-
+start transaction;
+UPDATE conta_bancaria SET saldo = saldo + (saldo * 0.03);
+commit;
 
 
 

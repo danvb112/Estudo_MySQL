@@ -522,10 +522,49 @@ Ex:. CREATE TABLE ...
 	...
 ) ENGINE = InnoDB:
 
+- O Store Procedures (procedimentos armazenados) é um recurso que permite armazenar no banco de dados, 
+códigos SQL para serem utilizados posteriormente em algum determinado momento. Logo são procedimentos 
+que ficam armazenados no banco de dados aguardando a execução Tendo como vantagnes a centralização, se-
+gurança, Performance/velocidade e o suporte a transações.
 
+- Para criar uma Store Procedure utiliza-se o comando
 
+* CREATE PROCEDURE Nome
 
+- Para invocar uma Store Procedure utiliza-se o comando
 
+* CALL Nome
+ou
+* EXECUTE Nome
+
+- Para excluir uma Store Procedure  utiliza-se o comando:
+
+* DROP PROCEDURE Nome
+
+- Os Triggers (Gatihlos) é um recurso do banco de dados que permite que por meio de um determinado even-
+to ou situação, blocos de códigos SQL sejam disparados sem a necessidade de uma chamada especifica para
+esses códigos. Esses códigos podem ser disparados antes ou depois de expressões SQL do tipo inserção, 
+alteração e exclusão, ou até mesmo em situações temporais como horários programados ou intervalos de 
+tempo. O uso dos triggers apresentam as mesmas vantagens do uso das store procedure porém a diferença é
+que os triggers são auto iniciados a partir de determinadas situações que ocorrem no banco de dados.
+
+- Os tipos de Triggers são:
+
+* BEFORE INSERT
+* BEFORE UPDATE
+* BEFORE DELETE
+* AFTER INSERT
+* AFTER UPDATE
+* AFTER DELETE
+* TEMPORAIS
+
+- Para criar um trigger usa-se o comando:
+
+* CREATE TRIGGER Nome Tipo ON tabela
+
+- Para excluir um trigger usa-se o comando:
+
+* FROP TRIGGER Nome
 
 
 
